@@ -1,0 +1,12 @@
+/output
+/openspec   
+/_pycache_
+.venv
+.agent
+.kilocode
+.openspec
+.env
+.vscode
+*.pyc
+
+
