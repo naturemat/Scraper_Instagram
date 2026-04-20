@@ -1,34 +1,84 @@
 import asyncio
+import time
 import logging
+from dotenv import load_dotenv
 from core.scheduler import ScraperScheduler
-from exporters.export import JSONExporter, CSVExporter
+from exporters.export import JSONExporter, CSVExporter, XLSXExporter
+from ai.summarizer import AISummarizer
 
-# Configure basic logging
+load_dotenv()
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
 logger = logging.getLogger(__name__)
 
+
 async def main():
-    logger.info("Initializing Instagram Scraper...")
-    
-    # Target profiles
-    targets = ["instagram", "google"]
-    
-    scheduler = ScraperScheduler(max_concurrent=2)
-    results = await scheduler.run(targets)
-    
-    logger.info("Scraping completed. Exporting results...")
-    
-    # Export to JSON
+    start_time = time.time()
+    logger.info("=" * 60)
+    logger.info("Instagram Deep Follower Scraper")
+    logger.info("=" * 60)
+
+    # --- Configuration ---
+    root_target = "thiss.mate"
+    max_followers = 80
+
+    # Initialize components
+    scheduler = ScraperScheduler(max_concurrent=3)
+    summarizer = AISummarizer()
+
+    if summarizer.is_available():
+        logger.info("AI summarizer: ENABLED")
+    else:
+        logger.info("AI summarizer: DISABLED (no API key)")
+
+    if scheduler.client.has_session:
+        logger.info("Session cookie: LOADED")
+    else:
+        logger.warning("Session cookie: MISSING — follower list extraction unavailable")
+
+    # --- Run the deep scraper ---
+    logger.info(f"Target: {root_target} | Max followers: {max_followers}")
+    logger.info("-" * 60)
+
+    results = await scheduler.run_deep(
+        root_username=root_target,
+        max_followers=max_followers,
+        summarizer=summarizer,
+    )
+
+    # --- Export results ---
+    logger.info("-" * 60)
+    logger.info("Exporting results...")
+
     json_exporter = JSONExporter()
     json_exporter.export(results)
-    
-    # Export to CSV
+
     csv_exporter = CSVExporter()
     csv_exporter.export(results)
+
+    xlsx_exporter = XLSXExporter()
+    xlsx_exporter.export(results)
+
+    # --- Summary ---
+    elapsed = time.time() - start_time
+    follower_count = len(results.get("followers", []))
+    root_status = results.get("root", {}).get("status", "unknown")
+
+    logger.info("=" * 60)
+    logger.info("SCRAPING COMPLETE")
+    logger.info(f"  Root profile: {root_target} ({root_status})")
+    logger.info(f"  Followers scraped: {follower_count}")
+    logger.info(f"  Time elapsed: {elapsed:.1f}s ({elapsed/60:.1f} min)")
+    logger.info(f"  Output files:")
+    logger.info(f"    - output/results.json")
+    logger.info(f"    - output/results.csv")
+    logger.info(f"    - output/results.xlsx")
+    logger.info("=" * 60)
+
 
 if __name__ == "__main__":
     asyncio.run(main())

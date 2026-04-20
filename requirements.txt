@@ -1,2 +1,6 @@
 httpx[http2]
 parsel
+python-dotenv
+openai
+openpyxl
+pandas
