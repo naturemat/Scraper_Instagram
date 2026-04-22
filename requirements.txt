@@ -4,3 +4,5 @@ python-dotenv
 openai
 openpyxl
 pandas
+playwright
+requests

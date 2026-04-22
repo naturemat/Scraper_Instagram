@@ -57,7 +57,7 @@ class FollowerExtractor:
                 return user_id
 
         # Method 4: Look in meta tags or data attributes
-        content = sel.xpath('//body').get() or ""
+        content = sel.xpath("//body").get() or ""
         match = re.search(r'data-id="(\d+)"', content)
         if match:
             user_id = match.group(1)
@@ -91,7 +91,7 @@ class FollowerExtractor:
         page_size = 50  # Instagram's default batch size
         page_num = 0
 
-        while has_next_page and len(followers) < target_count:
+        while has_next_page:
             page_num += 1
 
             # Try each query_hash until one works
@@ -143,7 +143,9 @@ class FollowerExtractor:
                     if i < len(FOLLOWER_QUERY_HASHES) - 1:
                         continue
                     else:
-                        logger.error("All query hashes exhausted. Cannot fetch followers.")
+                        logger.error(
+                            "All query hashes exhausted. Cannot fetch followers."
+                        )
                         return followers
 
             if not response_data or "data" not in response_data:
