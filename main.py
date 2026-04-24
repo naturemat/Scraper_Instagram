@@ -68,7 +68,7 @@ async def scrape_root_target_posts(
             comment_extractor_instance = PlaywrightCommentExtractor(
                 session_id=session_id, 
                 csrftoken=csrftoken, 
-                headless=False
+                headless=True
             )
             posts = await comment_extractor_instance.add_comments_to_posts(posts, max_comments)
 
