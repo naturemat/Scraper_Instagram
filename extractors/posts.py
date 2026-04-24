@@ -271,9 +271,9 @@ class PostExtractor:
             try:
                 posts = await self.run_posts(username, max_pages=2, max_posts=max_posts)
                 posts_by_user[username] = posts
-                logger.info(f"✅ {username}: {len(posts)} posts")
+                logger.info(f" {username}: {len(posts)} posts")
             except Exception as e:
-                logger.error(f"❌ {username}: {e}")
+                logger.error(f" {username}: {e}")
                 posts_by_user[username] = []
 
             await asyncio.sleep(random.uniform(1.5, 3.0))

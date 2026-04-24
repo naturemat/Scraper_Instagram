@@ -1,0 +1,97 @@
+{
+  "root_username": "dereckxcx",
+  "root_profile": {
+    "target": "dereckxcx",
+    "profile": {
+      "username": "dereckxcx",
+      "bio": null,
+      "followers": "5,268",
+      "following": "1,599",
+      "full_name": "Dereckxcx",
+      "is_private": false,
+      "followers_list": []
+    },
+    "status": "success"
+  },
+  "followers_discovered": [
+    "belnnn.__",
+    "m.p.r.g8",
+    "mermelada_de_manzannnaa_",
+    "angel4.scent._doll",
+    "jabi_jamon"
+  ],
+  "followers_completed": [
+    "belnnn.__",
+    "m.p.r.g8",
+    "mermelada_de_manzannnaa_",
+    "angel4.scent._doll",
+    "jabi_jamon"
+  ],
+  "followers_data": [
+    {
+      "target": "belnnn.__",
+      "profile": {
+        "username": "belnnn.__",
+        "bio": null,
+        "followers": "1,320",
+        "following": "958",
+        "full_name": "Bel",
+        "is_private": false,
+        "followers_list": []
+      },
+      "status": "success"
+    },
+    {
+      "target": "m.p.r.g8",
+      "profile": {
+        "username": "m.p.r.g8",
+        "bio": null,
+        "followers": "1,189",
+        "following": "467",
+        "full_name": "Maria Paula 🪵",
+        "is_private": false,
+        "followers_list": []
+      },
+      "status": "success"
+    },
+    {
+      "target": "mermelada_de_manzannnaa_",
+      "profile": {
+        "username": "mermelada_de_manzannnaa_",
+        "bio": null,
+        "followers": "111",
+        "following": "23",
+        "full_name": "Paw",
+        "is_private": false,
+        "followers_list": []
+      },
+      "status": "success"
+    },
+    {
+      "target": "angel4.scent._doll",
+      "profile": {
+        "username": "angel4.scent._doll",
+        "bio": null,
+        "followers": "1,089",
+        "following": "3,294",
+        "full_name": ".",
+        "is_private": false,
+        "followers_list": []
+      },
+      "status": "success"
+    },
+    {
+      "target": "jabi_jamon",
+      "profile": {
+        "username": "jabi_jamon",
+        "bio": null,
+        "followers": "1,084",
+        "following": "1,024",
+        "full_name": "Xavi",
+        "is_private": false,
+        "followers_list": []
+      },
+      "status": "success"
+    }
+  ]
+}

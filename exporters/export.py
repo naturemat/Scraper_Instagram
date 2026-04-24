@@ -133,11 +133,14 @@ class PsychologyCSVExporter(BaseExporter):
 
 class PostsJSONExporter(BaseExporter):
     def export(self, data: dict, filename: str = "posts.json"):
+        """Export posts to JSON with metadata and comments."""
         filepath = self.output_dir / filename
         try:
             total_comments = 0
             for post in data.get("posts", []):
-                total_comments += len(post.get("comments_data", []))
+                comments_data = post.get("comments_data", [])
+                if isinstance(comments_data, list):
+                    total_comments += len(comments_data)
 
             export_data = {
                 "username": data.get("username", ""),
@@ -178,6 +181,7 @@ class XLSXExporter(BaseExporter):
             "ai_summary",
         ]
 
+        # Prepare Target data
         root = data.get("root", {})
         root_profile = root.get("profile", {}) or {}
         target_row = [
@@ -194,6 +198,7 @@ class XLSXExporter(BaseExporter):
         ]
         target_df = pd.DataFrame(target_row, columns=columns)
 
+        # Prepare Followers data
         followers = data.get("followers", [])
         follower_rows = []
         for item in followers:
@@ -212,6 +217,7 @@ class XLSXExporter(BaseExporter):
             )
         followers_df = pd.DataFrame(follower_rows, columns=columns)
 
+        # Prepare Psychology Profiles data
         psychology_profiles = data.get("psychology_profiles", [])
         psych_columns = [
             "username",
@@ -235,16 +241,98 @@ class XLSXExporter(BaseExporter):
             )
         psychology_df = pd.DataFrame(psych_rows, columns=psych_columns)
 
+        # Prepare Posts data with comments
+        posts_by_user = data.get("posts_by_user", {})
+        all_posts_data = []
+        
+        # Also get root posts if available
+        root_posts = data.get("root_posts", [])
+        if root_posts:
+            for post in root_posts:
+                comments_list = post.get("comments_data", [])
+                comments_text = "; ".join([f"{c.get('username', '')}: {c.get('text', '')[:100]}" for c in comments_list[:3]])
+                all_posts_data.append({
+                    "username": data.get("root", {}).get("profile", {}).get("username", "root"),
+                    "post_url": post.get("url", ""),
+                    "shortcode": post.get("shortcode", ""),
+                    "caption": post.get("caption", "")[:200],
+                    "likes": post.get("likes", 0),
+                    "comments_count": post.get("comments_count", post.get("comment_count", 0)),
+                    "actual_comments_extracted": len(comments_list),
+                    "sample_comments": comments_text,
+                    "date": post.get("date", ""),
+                    "media_type": post.get("media_type", "")
+                })
+        
+        # Add follower posts
+        for username, posts in posts_by_user.items():
+            for post in posts:
+                comments_list = post.get("comments_data", [])
+                comments_text = "; ".join([f"{c.get('username', '')}: {c.get('text', '')[:100]}" for c in comments_list[:3]])
+                all_posts_data.append({
+                    "username": username,
+                    "post_url": post.get("url", ""),
+                    "shortcode": post.get("shortcode", ""),
+                    "caption": post.get("caption", "")[:200],
+                    "likes": post.get("likes", 0),
+                    "comments_count": post.get("comments_count", post.get("comment_count", 0)),
+                    "actual_comments_extracted": len(comments_list),
+                    "sample_comments": comments_text,
+                    "date": post.get("date", ""),
+                    "media_type": post.get("media_type", "")
+                })
+
+        posts_df = pd.DataFrame(all_posts_data)
+        
+        # Prepare Comments detailed data (one row per comment)
+        all_comments_data = []
+        for username, posts in posts_by_user.items():
+            for post in posts:
+                comments_list = post.get("comments_data", [])
+                for comment in comments_list:
+                    all_comments_data.append({
+                        "username": username,
+                        "post_url": post.get("url", ""),
+                        "post_shortcode": post.get("shortcode", ""),
+                        "comment_username": comment.get("username", ""),
+                        "comment_text": comment.get("text", ""),
+                        "comment_likes": comment.get("likes", 0),
+                        "comment_timestamp": comment.get("timestamp", 0),
+                    })
+        
+        # Add root posts comments
+        if root_posts:
+            for post in root_posts:
+                comments_list = post.get("comments_data", [])
+                for comment in comments_list:
+                    all_comments_data.append({
+                        "username": data.get("root", {}).get("profile", {}).get("username", "root"),
+                        "post_url": post.get("url", ""),
+                        "post_shortcode": post.get("shortcode", ""),
+                        "comment_username": comment.get("username", ""),
+                        "comment_text": comment.get("text", ""),
+                        "comment_likes": comment.get("likes", 0),
+                        "comment_timestamp": comment.get("timestamp", 0),
+                    })
+        
+        comments_df = pd.DataFrame(all_comments_data)
+
+        # Export to Excel with multiple sheets
         try:
             with pd.ExcelWriter(filepath, engine="openpyxl") as writer:
                 target_df.to_excel(writer, sheet_name="Target", index=False)
                 followers_df.to_excel(writer, sheet_name="Followers", index=False)
                 if not psychology_df.empty:
                     psychology_df.to_excel(writer, sheet_name="Psychology", index=False)
+                if not posts_df.empty:
+                    posts_df.to_excel(writer, sheet_name="Posts", index=False)
+                if not comments_df.empty:
+                    comments_df.to_excel(writer, sheet_name="Comments", index=False)
 
             logger.info(
                 f"Successfully exported XLSX ({len(followers)} followers, "
-                f"{len(psychology_profiles)} profiles): {filepath}"
+                f"{len(psychology_profiles)} profiles, {len(posts_df)} posts, "
+                f"{len(comments_df)} comments): {filepath}"
             )
         except Exception as e:
             logger.error(f"Failed to export XLSX: {e}")
