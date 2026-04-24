@@ -59,11 +59,18 @@ class ScraperScheduler:
         root_username: str,
         max_followers: int = 150,
         summarizer=None,
+        close_client: bool = False,
     ) -> dict:
         """Two-phase deep scraping pipeline with checkpoint resume.
 
         Phase 1: Fetch root profile + paginate followers via GraphQL.
         Phase 2: Visit each follower's profile page to extract metadata.
+
+        Args:
+            root_username: Instagram username to scrape
+            max_followers: Maximum number of followers to fetch (discover and process)
+            summarizer: AI summarizer instance (optional)
+            close_client: If True, close client after completion (default False)
 
         Returns:
             dict with 'root' and 'followers' keys.
@@ -75,10 +82,14 @@ class ScraperScheduler:
             if existing:
                 logger.info(f"Resuming from checkpoint for {root_username}")
                 root_profile = existing["root_profile"]
-                followers_discovered = existing["followers_discovered"]
+                followers_discovered_all = existing["followers_discovered"]
+                # Limit discovered followers to max_followers
+                followers_discovered = followers_discovered_all[:max_followers]
                 followers_completed = existing["followers_completed"]
                 followers_data = existing["followers_data"]
                 remaining = self.checkpoint.get_remaining(existing)
+                # Filter remaining to respect max_followers
+                remaining = [f for f in remaining if f in followers_discovered]
             else:
                 # === PHASE 1: Root profile + follower enumeration ===
                 logger.info(f"=== PHASE 1: Fetching root profile: {root_username} ===")
@@ -94,15 +105,15 @@ class ScraperScheduler:
                 html = root_result.get("html", "")
                 user_id = FollowerExtractor.extract_user_id(html)
 
-                followers_discovered = []
+                followers_discovered_all = []
                 if user_id and self.client.has_session:
                     logger.info(f"User ID: {user_id}. Starting follower pagination...")
-                    followers_discovered = await FollowerExtractor.paginate_followers(
+                    followers_discovered_all = await FollowerExtractor.paginate_followers(
                         client=self.client,
                         user_id=user_id,
-                        target_count=max_followers,
+                        target_count=max_followers,  # Discover up to max_followers
                     )
-                    logger.info(f"Discovered {len(followers_discovered)} followers")
+                    logger.info(f"Discovered {len(followers_discovered_all)} followers")
                 elif not self.client.has_session:
                     logger.warning(
                         "No IG_SESSION_ID set — cannot extract follower list. "
@@ -113,6 +124,10 @@ class ScraperScheduler:
                         "Could not extract user_id from profile HTML — "
                         "cannot paginate followers."
                     )
+                
+                # Limit discovered followers to max_followers
+                followers_discovered = followers_discovered_all[:max_followers]
+                logger.info(f"Limiting to {len(followers_discovered)} followers (max_followers={max_followers})")
 
                 followers_completed = []
                 followers_data = []
@@ -132,7 +147,7 @@ class ScraperScheduler:
                 )
                 remaining = followers_discovered.copy()
 
-            # === PHASE 2: Scrape each follower's profile ===
+            # === PHASE 2: Scrape each follower's profile (only up to max_followers) ===
             if remaining:
                 total = len(followers_discovered)
                 done_count = len(followers_completed)
@@ -201,4 +216,5 @@ class ScraperScheduler:
             logger.error(f"Session expired: {e}")
             raise
         finally:
-            await self.client.close()
+            if close_client:
+                await self.client.close()

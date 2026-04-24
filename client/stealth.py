@@ -3,6 +3,7 @@ import os
 import random
 import logging
 import asyncio
+from typing import Optional, Dict, Any
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +15,6 @@ USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15",
 ]
 
-# Instagram's internal app ID (public, embedded in their JS bundles)
 IG_APP_ID = "936619743392459"
 
 
@@ -24,21 +24,26 @@ class SessionExpiredError(Exception):
 
 
 class StealthClient:
-    def __init__(self, max_retries=3, session_id: str = None):
+    def __init__(self, max_retries=3, session_id: str = None, csrftoken: str = None):
         self.max_retries = max_retries
         self.session_id = session_id or os.getenv("IG_SESSION_ID", "")
+        self.csrftoken = csrftoken or os.getenv("IG_CSRFTOKEN", "")
 
         cookies = None
         if self.session_id:
             cookies = httpx.Cookies()
             cookies.set("sessionid", self.session_id, domain=".instagram.com")
-            logger.info("Session cookie loaded from environment")
+            if self.csrftoken:
+                cookies.set("csrftoken", self.csrftoken, domain=".instagram.com")
+                logger.info("Session and CSRF cookies loaded from environment")
+            else:
+                logger.info("Session cookie loaded from environment")
         else:
             logger.warning("No IG_SESSION_ID found — GraphQL follower extraction will be unavailable")
 
         self.session = httpx.AsyncClient(
             http2=True,
-            timeout=15.0,
+            timeout=30.0,
             cookies=cookies,
             follow_redirects=True,
         )
@@ -49,7 +54,7 @@ class StealthClient:
 
     def get_dynamic_headers(self, referer="https://www.instagram.com/"):
         ua = random.choice(USER_AGENTS)
-        return {
+        headers = {
             "User-Agent": ua,
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "Accept-Language": "en-US,en;q=0.9,es;q=0.8",
@@ -63,10 +68,16 @@ class StealthClient:
             "Sec-Fetch-User": "?1",
             "Upgrade-Insecure-Requests": "1",
         }
+        
+        # Add CSRF token if available
+        if self.csrftoken:
+            headers["X-Csrftoken"] = self.csrftoken
+            
+        return headers
 
     def _get_graphql_headers(self, referer="https://www.instagram.com/"):
         ua = random.choice(USER_AGENTS)
-        return {
+        headers = {
             "User-Agent": ua,
             "Accept": "*/*",
             "Accept-Language": "en-US,en;q=0.9",
@@ -81,7 +92,14 @@ class StealthClient:
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-origin",
+            "Content-Type": "application/x-www-form-urlencoded",
         }
+        
+        # Add CSRF token for POST requests
+        if self.csrftoken:
+            headers["X-Csrftoken"] = self.csrftoken
+            
+        return headers
 
     async def _request_with_retry(self, method, url, **kwargs):
         if "headers" not in kwargs:
@@ -91,7 +109,7 @@ class StealthClient:
             try:
                 response = await self.session.request(method, url, **kwargs)
 
-                # Detect session expiration on GraphQL endpoints
+                # Detect session expiration
                 if response.status_code == 401 or (
                     response.status_code == 302
                     and "/accounts/login" in response.headers.get("location", "")
@@ -131,6 +149,10 @@ class StealthClient:
 
     async def get(self, url, **kwargs):
         return await self._request_with_retry("GET", url, **kwargs)
+    
+    async def post(self, url, **kwargs):
+        """POST request method for the client"""
+        return await self._request_with_retry("POST", url, **kwargs)
 
     async def graphql_get(self, query_hash: str, variables: dict, referer: str = "https://www.instagram.com/"):
         """Hit Instagram's internal GraphQL endpoint with authenticated headers."""
@@ -149,6 +171,27 @@ class StealthClient:
         headers = self._get_graphql_headers(referer=referer)
 
         return await self._request_with_retry("GET", url, params=params, headers=headers)
+    
+    async def graphql_post(self, doc_id: str, variables: dict, referer: str = "https://www.instagram.com/"):
+        """POST request to Instagram's GraphQL endpoint with doc_id"""
+        import json as _json
+        
+        if not self.has_session:
+            raise SessionExpiredError(
+                "GraphQL requests require IG_SESSION_ID. Set it in your .env file."
+            )
+        
+        url = "https://www.instagram.com/graphql/query"
+        
+        # Format as form data for POST request
+        data = {
+            "doc_id": doc_id,
+            "variables": _json.dumps(variables)
+        }
+        
+        headers = self._get_graphql_headers(referer=referer)
+        
+        return await self._request_with_retry("POST", url, data=data, headers=headers)
 
     async def close(self):
         await self.session.aclose()

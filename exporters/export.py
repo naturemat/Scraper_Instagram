@@ -18,11 +18,6 @@ class BaseExporter:
 
 class JSONExporter(BaseExporter):
     def export(self, data: dict, filename="results.json"):
-        """Export deep scraping results to JSON.
-
-        Args:
-            data: dict with 'root' and 'followers' keys.
-        """
         filepath = self.output_dir / filename
         try:
             with open(filepath, "w", encoding="utf-8") as f:
@@ -34,13 +29,6 @@ class JSONExporter(BaseExporter):
 
 class CSVExporter(BaseExporter):
     def export(self, data: dict, filename="results.csv"):
-        """Export deep scraping results to CSV.
-
-        Creates a flat table with one row per profile (root + followers).
-
-        Args:
-            data: dict with 'root' and 'followers' keys.
-        """
         filepath = self.output_dir / filename
         rows = []
 
@@ -56,7 +44,6 @@ class CSVExporter(BaseExporter):
             "ai_summary",
         ]
 
-        # Root profile row
         root = data.get("root", {})
         root_profile = root.get("profile", {}) or {}
         rows.append(
@@ -73,7 +60,6 @@ class CSVExporter(BaseExporter):
             }
         )
 
-        # Follower rows
         for item in data.get("followers", []):
             profile = item.get("profile", {}) or {}
             rows.append(
@@ -106,11 +92,6 @@ class CSVExporter(BaseExporter):
 
 class PsychologyCSVExporter(BaseExporter):
     def export(self, data: dict, filename="psychology_profiles.csv"):
-        """Export psychology profiles to CSV.
-
-        Args:
-            data: dict with 'psychology_profiles' key.
-        """
         filepath = self.output_dir / filename
         profiles = data.get("psychology_profiles", [])
 
@@ -121,37 +102,24 @@ class PsychologyCSVExporter(BaseExporter):
         fieldnames = [
             "username",
             "profile_summary",
-            "value_hierarchy",
-            "emotional_tone",
-            "confidence",
-            "posts_per_week",
-            "consistency_score",
-            "peak_hours",
-            "content_types",
-            "engagement_recommendations",
+            "intereses",
+            "estilo",
+            "tono",
+            "resumen",
             "analyzed_at",
         ]
 
         rows = []
         for profile in profiles:
-            freq = profile.get("frequency_metrics", {})
-            rows.append(
-                {
-                    "username": profile.get("username"),
-                    "profile_summary": profile.get("profile_summary", ""),
-                    "value_hierarchy": ", ".join(profile.get("value_hierarchy", [])),
-                    "emotional_tone": profile.get("emotional_tone", ""),
-                    "confidence": profile.get("confidence", ""),
-                    "posts_per_week": freq.get("posts_per_week", 0),
-                    "consistency_score": freq.get("consistency_score", ""),
-                    "peak_hours": ", ".join(freq.get("peak_hours", [])),
-                    "content_types": ", ".join(freq.get("content_types", [])),
-                    "engagement_recommendations": ", ".join(
-                        profile.get("engagement_recommendations", [])
-                    ),
-                    "analyzed_at": profile.get("analyzed_at", ""),
-                }
-            )
+            rows.append({
+                "username": profile.get("username", ""),
+                "profile_summary": profile.get("profile_summary", profile.get("resumen", "")),
+                "intereses": ", ".join(profile.get("intereses", [])),
+                "estilo": profile.get("estilo", ""),
+                "tono": profile.get("tono", ""),
+                "resumen": profile.get("resumen", ""),
+                "analyzed_at": profile.get("analyzed_at", ""),
+            })
 
         try:
             with open(filepath, "w", encoding="utf-8", newline="") as f:
@@ -165,35 +133,33 @@ class PsychologyCSVExporter(BaseExporter):
 
 class PostsJSONExporter(BaseExporter):
     def export(self, data: dict, filename: str = "posts.json"):
-        """Export posts to JSON with metadata.
-
-        Args:
-            data: dict containing 'username' and 'posts' keys.
-            filename: output filename (default: posts.json).
-        """
         filepath = self.output_dir / filename
         try:
+            total_comments = 0
+            for post in data.get("posts", []):
+                total_comments += len(post.get("comments_data", []))
+
             export_data = {
                 "username": data.get("username", ""),
                 "exported_at": datetime.utcnow().isoformat() + "Z",
+                "total_posts": len(data.get("posts", [])),
+                "total_comments": total_comments,
                 "posts": data.get("posts", []),
             }
+
+            if "posts_by_user" in data:
+                export_data["posts_by_user"] = data.get("posts_by_user", {})
+
             with open(filepath, "w", encoding="utf-8") as f:
                 json.dump(export_data, f, indent=4, ensure_ascii=False)
-            logger.info(f"Successfully exported posts to JSON: {filepath}")
+
+            logger.info(f"Successfully exported {export_data['total_posts']} posts with {total_comments} comments to JSON: {filepath}")
         except Exception as e:
             logger.error(f"Failed to export posts JSON: {e}")
 
+
+class XLSXExporter(BaseExporter):
     def export(self, data: dict, filename="results.xlsx"):
-        """Export deep scraping results to Excel XLSX with multiple sheets.
-
-        Sheet 1 ("Target"): Single row with root profile metadata.
-        Sheet 2 ("Followers"): One row per follower profile.
-        Sheet 3 ("Psychology"): Psychology profiles if available.
-
-        Args:
-            data: dict with 'root', 'followers', and optionally 'psychology_profiles' keys.
-        """
         try:
             import pandas as pd
         except ImportError:
@@ -212,7 +178,6 @@ class PostsJSONExporter(BaseExporter):
             "ai_summary",
         ]
 
-        # === Prepare Target data ===
         root = data.get("root", {})
         root_profile = root.get("profile", {}) or {}
         target_row = [
@@ -229,7 +194,6 @@ class PostsJSONExporter(BaseExporter):
         ]
         target_df = pd.DataFrame(target_row, columns=columns)
 
-        # === Prepare Followers data ===
         followers = data.get("followers", [])
         follower_rows = []
         for item in followers:
@@ -248,40 +212,29 @@ class PostsJSONExporter(BaseExporter):
             )
         followers_df = pd.DataFrame(follower_rows, columns=columns)
 
-        # === Prepare Psychology Profiles data ===
         psychology_profiles = data.get("psychology_profiles", [])
         psych_columns = [
             "username",
             "profile_summary",
-            "value_hierarchy",
-            "emotional_tone",
-            "confidence",
-            "posts_per_week",
-            "consistency_score",
-            "engagement_recommendations",
+            "intereses",
+            "estilo",
+            "tono",
             "analyzed_at",
         ]
         psych_rows = []
         for profile in psychology_profiles:
-            freq_metrics = profile.get("frequency_metrics", {})
             psych_rows.append(
                 {
-                    "username": profile.get("username"),
-                    "profile_summary": profile.get("profile_summary", ""),
-                    "value_hierarchy": ", ".join(profile.get("value_hierarchy", [])),
-                    "emotional_tone": profile.get("emotional_tone", ""),
-                    "confidence": profile.get("confidence", ""),
-                    "posts_per_week": freq_metrics.get("posts_per_week", 0),
-                    "consistency_score": freq_metrics.get("consistency_score", ""),
-                    "engagement_recommendations": ", ".join(
-                        profile.get("engagement_recommendations", [])
-                    ),
+                    "username": profile.get("username", ""),
+                    "profile_summary": profile.get("profile_summary", profile.get("resumen", "")),
+                    "intereses": ", ".join(profile.get("intereses", [])),
+                    "estilo": profile.get("estilo", ""),
+                    "tono": profile.get("tono", ""),
                     "analyzed_at": profile.get("analyzed_at", ""),
                 }
             )
         psychology_df = pd.DataFrame(psych_rows, columns=psych_columns)
 
-        # === Export to Excel with multiple sheets ===
         try:
             with pd.ExcelWriter(filepath, engine="openpyxl") as writer:
                 target_df.to_excel(writer, sheet_name="Target", index=False)

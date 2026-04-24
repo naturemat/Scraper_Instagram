@@ -1,6 +1,7 @@
 httpx[http2]
 parsel
 python-dotenv
+groq
 openai
 openpyxl
 pandas

@@ -9,7 +9,6 @@ logger = logging.getLogger(__name__)
 
 try:
     from openai import AsyncOpenAI
-
     OPENAI_AVAILABLE = True
 except ImportError:
     OPENAI_AVAILABLE = False
@@ -17,7 +16,6 @@ except ImportError:
 
 try:
     from groq import AsyncGroq
-
     GROQ_AVAILABLE = True
 except ImportError:
     GROQ_AVAILABLE = False
@@ -33,7 +31,7 @@ PSYCHOLOGIST_SYSTEM_PROMPT = """Eres un analista simple de perfiles de Instagram
 Responde en JSON simple:
 {
   "intereses": ["interes1", "interes2"],
-  "estilo_vida": "descripcion breve",
+  "estilo": "descripcion breve",
   "tono": "tono principal",
   "resumen": "1-2 oraciones"
 }"""
@@ -81,6 +79,7 @@ class PsychologyAnalyzer:
                 "estilo": "sin datos",
                 "tono": "-",
                 "resumen": "Sin bio ni posts para analizar",
+                "profile_summary": "Sin bio ni posts para analizar",
             }
 
         posts_text = ""
@@ -130,6 +129,7 @@ Responde SOLO con JSON:
                 return self._create_default_analysis(username)
 
             analysis["username"] = username
+            analysis["profile_summary"] = analysis.get("resumen", "")
             analysis["analyzed_at"] = datetime.utcnow().isoformat() + "Z"
 
             logger.info(f"Generated psychology profile for {username}")
@@ -139,16 +139,111 @@ Responde SOLO con JSON:
             logger.error(f"Error generating psychology analysis: {e}")
             return None
 
-    async def analyze_batch(self, followers_data: list[dict]) -> list[dict]:
+    async def analyze_batch_with_posts(
+        self, followers_data: list[dict], posts_by_user: dict[str, list[dict]]
+    ) -> list[dict]:
         analyses = []
 
         for follower_data in followers_data:
-            analysis = await self.analyze_follower(follower_data)
-            if analysis:
-                analyses.append(analysis)
+            profile = follower_data.get("profile", {})
+            username = profile.get("username", "")
+
+            if not username:
+                continue
+
+            posts = posts_by_user.get(username, [])
+
+            try:
+                analysis = await self.analyze_follower(follower_data, posts)
+                if analysis:
+                    if posts:
+                        analysis["frequency_metrics"] = (
+                            self._calculate_frequency_metrics(posts)
+                        )
+                    analyses.append(analysis)
+            except Exception as e:
+                logger.warning(f"Error analyzing {username}: {e}")
+                analyses.append(self._create_default_analysis(username))
+
             await asyncio.sleep(0.5)
 
         return analyses
+
+    async def analyze_follower_with_posts(
+        self, username: str, bio: str, posts: list[dict]
+    ) -> Optional[dict]:
+        if not self.groq_client and not self.openai_client:
+            logger.debug("AI client not initialized, skipping analysis")
+            return None
+
+        if not bio and not posts:
+            return {
+                "username": username,
+                "intereses": [],
+                "estilo": "sin datos",
+                "tono": "-",
+                "resumen": "Sin bio ni posts para analizar",
+                "profile_summary": "Sin bio ni posts para analizar",
+            }
+
+        posts_text = ""
+        if posts:
+            posts_text = self._prepare_posts_text(posts)
+
+        user_prompt = f"""Analiza este perfil de Instagram:
+
+Username: {username}
+Bio: {bio}
+
+{posts_text}
+
+Responde SOLO con JSON:
+{{"intereses": ["interes1"], "estilo": "descripcion", "tono": "tono", "resumen": "oracion"}}"""
+
+        try:
+            if self.groq_client:
+                response = await self.groq_client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": PSYCHOLOGIST_SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    max_tokens=1000,
+                    temperature=0.7,
+                )
+            else:
+                response = await self.openai_client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": PSYCHOLOGIST_SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    max_tokens=1000,
+                    temperature=0.7,
+                    response_format={"type": "json_object"},
+                )
+
+            content = response.choices[0].message.content
+
+            try:
+                analysis = json.loads(content)
+            except json.JSONDecodeError:
+                logger.error(f"Failed to parse AI response as JSON: {content}")
+                return self._create_default_analysis(username)
+
+            analysis["username"] = username
+            analysis["profile_summary"] = analysis.get("resumen", "")
+            analysis["analyzed_at"] = datetime.utcnow().isoformat() + "Z"
+
+            if posts:
+                analysis["frequency_metrics"] = self._calculate_frequency_metrics(posts)
+
+            logger.info(f"Generated psychology profile for {username}")
+            return analysis
+
+        except Exception as e:
+            logger.error(f"Error generating psychology analysis: {e}")
+            return None
 
     def _prepare_posts_text(self, posts: list) -> str:
         captions = []
@@ -175,13 +270,15 @@ Responde SOLO con JSON:
             ts = post.get("timestamp")
             if ts:
                 try:
-                    dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
-                    timestamps.append(dt)
+                    dt = datetime.fromtimestamp(ts) if isinstance(ts, (int, float)) else None
+                    if dt:
+                        timestamps.append(dt)
                 except:
                     pass
 
-            media_types = post.get("media_types", [])
-            content_types.extend(media_types)
+            media_type = post.get("media_type", "")
+            if media_type:
+                content_types.append(media_type)
 
         if len(timestamps) < 2:
             posts_per_week = len(posts) / 4.0
@@ -234,6 +331,7 @@ Responde SOLO con JSON:
             "estilo": "no detectado",
             "tono": "desconocido",
             "resumen": "Sin datos suficientes",
+            "profile_summary": "Sin datos suficientes",
         }
 
     def is_available(self) -> bool:
