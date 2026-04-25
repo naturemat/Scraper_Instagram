@@ -1,0 +1,52 @@
+{
+  "root_username": "andrebernal26",
+  "root_profile": {
+    "target": "andrebernal26",
+    "profile": {
+      "username": "andrebernal26",
+      "bio": null,
+      "followers": "45K",
+      "following": "1,972",
+      "full_name": "Andrea Bernal",
+      "is_private": false,
+      "followers_list": []
+    },
+    "status": "success"
+  },
+  "followers_discovered": [
+    "malu.jaranoboa",
+    "smed_bu"
+  ],
+  "followers_completed": [
+    "malu.jaranoboa",
+    "smed_bu"
+  ],
+  "followers_data": [
+    {
+      "target": "malu.jaranoboa",
+      "profile": {
+        "username": "malu.jaranoboa",
+        "bio": null,
+        "followers": "216",
+        "following": "875",
+        "full_name": "Lu Jara Noboa",
+        "is_private": false,
+        "followers_list": []
+      },
+      "status": "success"
+    },
+    {
+      "target": "smed_bu",
+      "profile": {
+        "username": "smed_bu",
+        "bio": null,
+        "followers": "506",
+        "following": "867",
+        "full_name": null,
+        "is_private": false,
+        "followers_list": []
+      },
+      "status": "success"
+    }
+  ]
+}

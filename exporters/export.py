@@ -129,6 +129,105 @@ class PsychologyCSVExporter(BaseExporter):
             logger.info(f"Successfully exported {len(rows)} psychology profiles to CSV")
         except Exception as e:
             logger.error(f"Failed to export psychology CSV: {e}")
+# Añade esta clase después de PsychologyCSVExporter
+
+class RootAnalysisExporter(BaseExporter):
+    def export(self, data: dict, filename="root_analysis.json"):
+        """Export root profile analysis to JSON."""
+        filepath = self.output_dir / filename
+        
+        root_analysis = data.get("root_analysis", {})
+        root_profile = data.get("root", {}).get("profile", {})
+        
+        if not root_analysis:
+            logger.warning("No root analysis data to export.")
+            return
+        
+        export_data = {
+            "exported_at": datetime.utcnow().isoformat() + "Z",
+            "profile_info": {
+                "username": root_profile.get("username"),
+                "full_name": root_profile.get("full_name"),
+                "bio": root_profile.get("bio"),
+                "followers": root_profile.get("followers"),
+                "following": root_profile.get("following"),
+                "is_private": root_profile.get("is_private", False),
+            },
+            "analysis": root_analysis
+        }
+        
+        try:
+            with open(filepath, "w", encoding="utf-8") as f:
+                json.dump(export_data, f, indent=4, ensure_ascii=False)
+            logger.info(f"Successfully exported root analysis to JSON: {filepath}")
+        except Exception as e:
+            logger.error(f"Failed to export root analysis JSON: {e}")
+
+
+class RootAnalysisCSVExporter(BaseExporter):
+    def export(self, data: dict, filename="root_analysis.csv"):
+        """Export root profile analysis to CSV (single row)."""
+        filepath = self.output_dir / filename
+        
+        root_analysis = data.get("root_analysis", {})
+        root_profile = data.get("root", {}).get("profile", {})
+        
+        if not root_analysis:
+            logger.warning("No root analysis data to export.")
+            return
+        
+        fieldnames = [
+            "username",
+            "full_name",
+            "followers",
+            "following",
+            "intereses_principales",
+            "estilo_vida",
+            "tono_comunicacion",
+            "publico_objetivo",
+            "finalidad_cuenta",
+            "engagement_estimado",
+            "avg_likes",
+            "avg_comments",
+            "engagement_rate",
+            "total_posts_analyzed",
+            "fortalezas",
+            "areas_mejora",
+            "recomendaciones",
+            "resumen_ejecutivo",
+            "analyzed_at"
+        ]
+        
+        row = {
+            "username": root_profile.get("username"),
+            "full_name": root_profile.get("full_name"),
+            "followers": root_profile.get("followers"),
+            "following": root_profile.get("following"),
+            "intereses_principales": ", ".join(root_analysis.get("intereses_principales", [])),
+            "estilo_vida": root_analysis.get("estilo_vida", ""),
+            "tono_comunicacion": root_analysis.get("tono_comunicacion", ""),
+            "publico_objetivo": root_analysis.get("publico_objetivo", ""),
+            "finalidad_cuenta": root_analysis.get("finalidad_cuenta", ""),
+            "engagement_estimado": root_analysis.get("engagement_estimado", ""),
+            "avg_likes": root_analysis.get("avg_likes", 0),
+            "avg_comments": root_analysis.get("avg_comments", 0),
+            "engagement_rate": root_analysis.get("engagement_rate", 0),
+            "total_posts_analyzed": root_analysis.get("total_posts_analyzed", 0),
+            "fortalezas": ", ".join(root_analysis.get("fortalezas", [])),
+            "areas_mejora": ", ".join(root_analysis.get("areas_mejora", [])),
+            "recomendaciones": ". ".join(root_analysis.get("recomendaciones", [])),
+            "resumen_ejecutivo": root_analysis.get("resumen_ejecutivo", ""),
+            "analyzed_at": root_analysis.get("analyzed_at", ""),
+        }
+        
+        try:
+            with open(filepath, "w", encoding="utf-8", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerow(row)
+            logger.info(f"Successfully exported root analysis to CSV: {filepath}")
+        except Exception as e:
+            logger.error(f"Failed to export root analysis CSV: {e}")
 
 
 class PostsJSONExporter(BaseExporter):

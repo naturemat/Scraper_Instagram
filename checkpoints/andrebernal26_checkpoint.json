@@ -1,4 +1,469 @@
 {
+    "root_target": "andrebernal26",
+    "timestamp": 1777083796.9675996,
+    "date": "2026-04-24 21:23:16",
+    "followers_count": 2,
+    "posts_count": 20,
+    "comments_count": 22,
+    "followers": [
+        {
+            "target": "malu.jaranoboa",
+            "profile": {
+                "username": "malu.jaranoboa",
+                "bio": null,
+                "followers": "216",
+                "following": "875",
+                "full_name": "Lu Jara Noboa",
+                "is_private": false,
+                "followers_list": []
+            },
+            "status": "success"
+        },
+        {
+            "target": "smed_bu",
+            "profile": {
+                "username": "smed_bu",
+                "bio": null,
+                "followers": "506",
+                "following": "867",
+                "full_name": null,
+                "is_private": false,
+                "followers_list": []
+            },
+            "status": "success"
+        }
+    ],
+    "posts_by_user": {
+        "malu.jaranoboa": [
+            {
+                "url": "https://www.instagram.com/p/CfuWRmaunHw/",
+                "shortcode": "CfuWRmaunHw",
+                "caption": "",
+                "hashtags": [],
+                "likes": 32,
+                "comments": 9,
+                "views": "N/A",
+                "timestamp": 1657225104,
+                "date": "2022-07-07 15:18:24",
+                "media_type": "XDTMediaDict",
+                "comments_data": [
+                    {
+                        "username": "malu.jaranoboa",
+                        "user_id": "",
+                        "text": "Quito, Ecuador",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "villalvamontalvo",
+                        "user_id": "",
+                        "text": "Muchas Felicidades Mari Lourdes, Abrazos.",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "andresvaca100",
+                        "user_id": "",
+                        "text": "Muchas felicidades.. un fuerte abrazo..",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "marieliz49",
+                        "user_id": "",
+                        "text": "Congratulations!!",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "maltamarce",
+                        "user_id": "",
+                        "text": "❤️muchas felicidades amiga bella",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "emilyquevec",
+                        "user_id": "",
+                        "text": "Bella amiga",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "malu.jaranoboa",
+                        "user_id": "",
+                        "text": "Reply",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "carlos.teddy.5",
+                        "user_id": "",
+                        "text": "Felicidades amiga, bendiciones en esta nueva vida de casada. Abrazos a los novios.",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "Privacy",
+                        "user_id": "",
+                        "text": "Meta",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    }
+                ],
+                "comments_count_actual": 9
+            },
+            {
+                "url": "https://www.instagram.com/p/DXSwnYEjBak/",
+                "shortcode": "DXSwnYEjBak",
+                "caption": "",
+                "hashtags": [],
+                "likes": 4,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776558476,
+                "date": "2026-04-18 19:27:56",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DXSq4RTGD9K/",
+                "shortcode": "DXSq4RTGD9K",
+                "caption": "",
+                "hashtags": [],
+                "likes": 1,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776555469,
+                "date": "2026-04-18 18:37:49",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DW_yliIkeaN/",
+                "shortcode": "DW_yliIkeaN",
+                "caption": "Lo más lindo ❤️",
+                "hashtags": [],
+                "likes": 1,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1775921976,
+                "date": "2026-04-11 10:39:36",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DWNft_cjcRd/",
+                "shortcode": "DWNft_cjcRd",
+                "caption": "",
+                "hashtags": [],
+                "likes": 8,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1774234361,
+                "date": "2026-03-22 21:52:41",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DVpaX9djR4p/",
+                "shortcode": "DVpaX9djR4p",
+                "caption": "",
+                "hashtags": [],
+                "likes": 0,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1773023599,
+                "date": "2026-03-08 21:33:19",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DVpaIk9DfdY/",
+                "shortcode": "DVpaIk9DfdY",
+                "caption": "Mitad del mundo...",
+                "hashtags": [],
+                "likes": 6,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1773023473,
+                "date": "2026-03-08 21:31:13",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DVpZ89NjX1y/",
+                "shortcode": "DVpZ89NjX1y",
+                "caption": "Mitad del mundo con mi sobrina Ma José ❤️",
+                "hashtags": [],
+                "likes": 5,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1773023378,
+                "date": "2026-03-08 21:29:38",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DVpZ2JTDUYo/",
+                "shortcode": "DVpZ2JTDUYo",
+                "caption": "Museo Guayasamín 🎨",
+                "hashtags": [],
+                "likes": 4,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1773023322,
+                "date": "2026-03-08 21:28:42",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DVpZuVQjfnl/",
+                "shortcode": "DVpZuVQjfnl",
+                "caption": "",
+                "hashtags": [],
+                "likes": 3,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1773023258,
+                "date": "2026-03-08 21:27:38",
+                "media_type": "XDTMediaDict"
+            }
+        ],
+        "smed_bu": [
+            {
+                "url": "https://www.instagram.com/p/DXSgglSD1CL/",
+                "shortcode": "DXSgglSD1CL",
+                "caption": "Solo 9 días y llegan mis 45 vueltas  y se  celebra como se debe, así que se abre oficialmente la temporada de festejos  desde este lunes 20\nSe aceptan (y se agradecen): \n\nRegalos sorpresa.\nInvitaciones a almorzar.\nBielas bien frías.\nCafe con postre\nDepósitos en efectivo ja \n\nY para los que quieran caer y dar el abrazo en persona: \n\nEL sábado 25 estaré en el evento \"La Carnicería invita\" del Nico Jaramillo. 🥩🍻 \n\n​Un eventaso donde pagas $6 usd, comes todo lo que quieras y solo pagas tu bebida\n\nPa el que no conoce la Carniceria está ubicada en la Almagro y Wilson, en plena mariscal.",
+                "hashtags": [],
+                "likes": 43,
+                "comments": 8,
+                "views": "N/A",
+                "timestamp": 1776550146,
+                "date": "2026-04-18 17:09:06",
+                "media_type": "XDTMediaDict",
+                "comments_data": [
+                    {
+                        "username": "smed_bu",
+                        "user_id": "",
+                        "text": "Austero•HARD",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "smed_bu",
+                        "user_id": "",
+                        "text": "smed_bu\n \n6d\nSolo 9 días y llegan mis 45 vueltas  y se  celebra como se debe, así que se abre oficialmente la temporada de festejos  desde este lunes 20\nSe aceptan (y se agradecen): \n\nRegalos sorpresa.\nInvitaciones a almorzar.\nBielas bien frías.\nCafe con postre\nDepósitos en efectivo ja \n\nY para los que quieran caer y dar el abrazo en persona: \n\nEL sábado 25 estaré en el evento \"La Carnicería invita\" del Nico Jaramillo. 🥩🍻 \n\n​Un eventaso donde pagas $6 usd, comes todo lo que quieras y solo pagas tu bebida\n\nPa el que no conoce la Carniceria está ubicada en la Almagro y Wilson, en plena mariscal.",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "smed_bu",
+                        "user_id": "",
+                        "text": "Solo 9 días y llegan mis 45 vueltas  y se  celebra como se debe, así que se abre oficialmente la temporada de festejos  desde este lunes 20\nSe aceptan (y se agradecen): \n\nRegalos sorpresa.\nInvitaciones a almorzar.\nBielas bien frías.\nCafe con postre\nDepósitos en efectivo ja \n\nY para los que quieran caer y dar el abrazo en persona: \n\nEL sábado 25 estaré en el evento \"La Carnicería invita\" del Nico Jaramillo. 🥩🍻 \n\n​Un eventaso donde pagas $6 usd, comes todo lo que quieras y solo pagas tu bebida\n\nPa el que no conoce la Carniceria está ubicada en la Almagro y Wilson, en plena mariscal.",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "rock3r_87",
+                        "user_id": "",
+                        "text": "Bueeee",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "monkeysbrew",
+                        "user_id": "",
+                        "text": "1 like",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "bum_kaboom",
+                        "user_id": "",
+                        "text": "🔥🔥🔥",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "monkeysbrew",
+                        "user_id": "",
+                        "text": "Her",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "wicked.dragonfly",
+                        "user_id": "",
+                        "text": "Tengo rodajeeeeeeee!!! Que huevada perderse este magno evento !!!!!! ❤️❤️",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "Privacy",
+                        "user_id": "",
+                        "text": "Meta",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    }
+                ],
+                "comments_count_actual": 9
+            },
+            {
+                "url": "https://www.instagram.com/p/DWeBnB1DW33/",
+                "shortcode": "DWeBnB1DW33",
+                "caption": "Lecciones de vida en un decálogo\n\n​Arón Bitrán nos comparte su visión sobre lo que significa ser parte de un cuarteto. \n\nSin embargo, su mensaje va mucho más allá de las cuerdas; son principios aplicables a todo lo que hacemos con pasión y compromiso en el día a día.",
+                "hashtags": [],
+                "likes": 1,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1774789312,
+                "date": "2026-03-29 08:01:52",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DRrc6GBjQle/",
+                "shortcode": "DRrc6GBjQle",
+                "caption": "La noche de anoche\nEntre fotos, música y baile\nGran encuentro gran",
+                "hashtags": [],
+                "likes": 30,
+                "comments": 2,
+                "views": "N/A",
+                "timestamp": 1764502100,
+                "date": "2025-11-30 06:28:20",
+                "media_type": "XDTMediaDict",
+                "comments_data": [
+                    {
+                        "username": "smed_bu",
+                        "user_id": "",
+                        "text": "smed_bu\n \n20w\nLa noche de anoche\nEntre fotos, música y baile\nGran encuentro gran",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "smed_bu",
+                        "user_id": "",
+                        "text": "La noche de anoche\nEntre fotos, música y baile\nGran encuentro gran",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "cb2_7",
+                        "user_id": "",
+                        "text": "😍🔥",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    },
+                    {
+                        "username": "Privacy",
+                        "user_id": "",
+                        "text": "Meta",
+                        "timestamp": 0,
+                        "likes": 0,
+                        "has_replies": false
+                    }
+                ],
+                "comments_count_actual": 4
+            },
+            {
+                "url": "https://www.instagram.com/p/DXXpkuJD9OU/",
+                "shortcode": "DXXpkuJD9OU",
+                "caption": "",
+                "hashtags": [],
+                "likes": 2,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776722563,
+                "date": "2026-04-20 17:02:43",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DXXA_XFjYFq/",
+                "shortcode": "DXXA_XFjYFq",
+                "caption": "",
+                "hashtags": [],
+                "likes": 1,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776701278,
+                "date": "2026-04-20 11:07:58",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DXWcRA7jQau/",
+                "shortcode": "DXWcRA7jQau",
+                "caption": "",
+                "hashtags": [],
+                "likes": 0,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776682037,
+                "date": "2026-04-20 05:47:17",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DXU-7twj4NI/",
+                "shortcode": "DXU-7twj4NI",
+                "caption": "Xq la producción también hace dulces\nTerapia de Domingo",
+                "hashtags": [],
+                "likes": 1,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776633112,
+                "date": "2026-04-19 16:11:52",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DXGIfuODBzi/",
+                "shortcode": "DXGIfuODBzi",
+                "caption": "Nietzsche decía que \"todo espíritu profundo necesita una máscara\"\n\nNo siempre estar  risueño es estar bien, ni estar muy serio , es estar mal, depende cuanto conozcas al otr@ para saberlo.",
+                "hashtags": [],
+                "likes": 2,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776134788,
+                "date": "2026-04-13 21:46:28",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DXCpyJPESxW/",
+                "shortcode": "DXCpyJPESxW",
+                "caption": "",
+                "hashtags": [],
+                "likes": 0,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776018032,
+                "date": "2026-04-12 13:20:32",
+                "media_type": "XDTMediaDict"
+            },
+            {
+                "url": "https://www.instagram.com/p/DXCpVkKkUxz/",
+                "shortcode": "DXCpVkKkUxz",
+                "caption": "",
+                "hashtags": [],
+                "likes": 1,
+                "comments": 0,
+                "views": "N/A",
+                "timestamp": 1776017798,
+                "date": "2026-04-12 13:16:38",
+                "media_type": "XDTMediaDict"
+            }
+        ]
+    },
     "root": {
         "target": "andrebernal26",
         "profile": {
@@ -1159,34 +1624,6 @@
             }
         ]
     },
-    "followers": [
-        {
-            "target": "malu.jaranoboa",
-            "profile": {
-                "username": "malu.jaranoboa",
-                "bio": null,
-                "followers": "216",
-                "following": "875",
-                "full_name": "Lu Jara Noboa",
-                "is_private": false,
-                "followers_list": []
-            },
-            "status": "success"
-        },
-        {
-            "target": "smed_bu",
-            "profile": {
-                "username": "smed_bu",
-                "bio": null,
-                "followers": "506",
-                "following": "867",
-                "full_name": null,
-                "is_private": false,
-                "followers_list": []
-            },
-            "status": "success"
-        }
-    ],
     "root_posts": [
         {
             "url": "https://www.instagram.com/p/DQZUbFpkf41/",
@@ -2373,437 +2810,6 @@
         "avg_comments": 57.6,
         "engagement_rate": 6.88,
         "analyzed_at": "2026-04-25T02:22:03.510301Z"
-    },
-    "posts_by_user": {
-        "malu.jaranoboa": [
-            {
-                "url": "https://www.instagram.com/p/CfuWRmaunHw/",
-                "shortcode": "CfuWRmaunHw",
-                "caption": "",
-                "hashtags": [],
-                "likes": 32,
-                "comments": 9,
-                "views": "N/A",
-                "timestamp": 1657225104,
-                "date": "2022-07-07 15:18:24",
-                "media_type": "XDTMediaDict",
-                "comments_data": [
-                    {
-                        "username": "malu.jaranoboa",
-                        "user_id": "",
-                        "text": "Quito, Ecuador",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "villalvamontalvo",
-                        "user_id": "",
-                        "text": "Muchas Felicidades Mari Lourdes, Abrazos.",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "andresvaca100",
-                        "user_id": "",
-                        "text": "Muchas felicidades.. un fuerte abrazo..",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "marieliz49",
-                        "user_id": "",
-                        "text": "Congratulations!!",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "maltamarce",
-                        "user_id": "",
-                        "text": "❤️muchas felicidades amiga bella",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "emilyquevec",
-                        "user_id": "",
-                        "text": "Bella amiga",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "malu.jaranoboa",
-                        "user_id": "",
-                        "text": "Reply",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "carlos.teddy.5",
-                        "user_id": "",
-                        "text": "Felicidades amiga, bendiciones en esta nueva vida de casada. Abrazos a los novios.",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "Privacy",
-                        "user_id": "",
-                        "text": "Meta",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    }
-                ],
-                "comments_count_actual": 9
-            },
-            {
-                "url": "https://www.instagram.com/p/DXSwnYEjBak/",
-                "shortcode": "DXSwnYEjBak",
-                "caption": "",
-                "hashtags": [],
-                "likes": 4,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776558476,
-                "date": "2026-04-18 19:27:56",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DXSq4RTGD9K/",
-                "shortcode": "DXSq4RTGD9K",
-                "caption": "",
-                "hashtags": [],
-                "likes": 1,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776555469,
-                "date": "2026-04-18 18:37:49",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DW_yliIkeaN/",
-                "shortcode": "DW_yliIkeaN",
-                "caption": "Lo más lindo ❤️",
-                "hashtags": [],
-                "likes": 1,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1775921976,
-                "date": "2026-04-11 10:39:36",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DWNft_cjcRd/",
-                "shortcode": "DWNft_cjcRd",
-                "caption": "",
-                "hashtags": [],
-                "likes": 8,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1774234361,
-                "date": "2026-03-22 21:52:41",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DVpaX9djR4p/",
-                "shortcode": "DVpaX9djR4p",
-                "caption": "",
-                "hashtags": [],
-                "likes": 0,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1773023599,
-                "date": "2026-03-08 21:33:19",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DVpaIk9DfdY/",
-                "shortcode": "DVpaIk9DfdY",
-                "caption": "Mitad del mundo...",
-                "hashtags": [],
-                "likes": 6,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1773023473,
-                "date": "2026-03-08 21:31:13",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DVpZ89NjX1y/",
-                "shortcode": "DVpZ89NjX1y",
-                "caption": "Mitad del mundo con mi sobrina Ma José ❤️",
-                "hashtags": [],
-                "likes": 5,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1773023378,
-                "date": "2026-03-08 21:29:38",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DVpZ2JTDUYo/",
-                "shortcode": "DVpZ2JTDUYo",
-                "caption": "Museo Guayasamín 🎨",
-                "hashtags": [],
-                "likes": 4,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1773023322,
-                "date": "2026-03-08 21:28:42",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DVpZuVQjfnl/",
-                "shortcode": "DVpZuVQjfnl",
-                "caption": "",
-                "hashtags": [],
-                "likes": 3,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1773023258,
-                "date": "2026-03-08 21:27:38",
-                "media_type": "XDTMediaDict"
-            }
-        ],
-        "smed_bu": [
-            {
-                "url": "https://www.instagram.com/p/DXSgglSD1CL/",
-                "shortcode": "DXSgglSD1CL",
-                "caption": "Solo 9 días y llegan mis 45 vueltas  y se  celebra como se debe, así que se abre oficialmente la temporada de festejos  desde este lunes 20\nSe aceptan (y se agradecen): \n\nRegalos sorpresa.\nInvitaciones a almorzar.\nBielas bien frías.\nCafe con postre\nDepósitos en efectivo ja \n\nY para los que quieran caer y dar el abrazo en persona: \n\nEL sábado 25 estaré en el evento \"La Carnicería invita\" del Nico Jaramillo. 🥩🍻 \n\n​Un eventaso donde pagas $6 usd, comes todo lo que quieras y solo pagas tu bebida\n\nPa el que no conoce la Carniceria está ubicada en la Almagro y Wilson, en plena mariscal.",
-                "hashtags": [],
-                "likes": 43,
-                "comments": 8,
-                "views": "N/A",
-                "timestamp": 1776550146,
-                "date": "2026-04-18 17:09:06",
-                "media_type": "XDTMediaDict",
-                "comments_data": [
-                    {
-                        "username": "smed_bu",
-                        "user_id": "",
-                        "text": "Austero•HARD",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "smed_bu",
-                        "user_id": "",
-                        "text": "smed_bu\n \n6d\nSolo 9 días y llegan mis 45 vueltas  y se  celebra como se debe, así que se abre oficialmente la temporada de festejos  desde este lunes 20\nSe aceptan (y se agradecen): \n\nRegalos sorpresa.\nInvitaciones a almorzar.\nBielas bien frías.\nCafe con postre\nDepósitos en efectivo ja \n\nY para los que quieran caer y dar el abrazo en persona: \n\nEL sábado 25 estaré en el evento \"La Carnicería invita\" del Nico Jaramillo. 🥩🍻 \n\n​Un eventaso donde pagas $6 usd, comes todo lo que quieras y solo pagas tu bebida\n\nPa el que no conoce la Carniceria está ubicada en la Almagro y Wilson, en plena mariscal.",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "smed_bu",
-                        "user_id": "",
-                        "text": "Solo 9 días y llegan mis 45 vueltas  y se  celebra como se debe, así que se abre oficialmente la temporada de festejos  desde este lunes 20\nSe aceptan (y se agradecen): \n\nRegalos sorpresa.\nInvitaciones a almorzar.\nBielas bien frías.\nCafe con postre\nDepósitos en efectivo ja \n\nY para los que quieran caer y dar el abrazo en persona: \n\nEL sábado 25 estaré en el evento \"La Carnicería invita\" del Nico Jaramillo. 🥩🍻 \n\n​Un eventaso donde pagas $6 usd, comes todo lo que quieras y solo pagas tu bebida\n\nPa el que no conoce la Carniceria está ubicada en la Almagro y Wilson, en plena mariscal.",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "rock3r_87",
-                        "user_id": "",
-                        "text": "Bueeee",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "monkeysbrew",
-                        "user_id": "",
-                        "text": "1 like",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "bum_kaboom",
-                        "user_id": "",
-                        "text": "🔥🔥🔥",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "monkeysbrew",
-                        "user_id": "",
-                        "text": "Her",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "wicked.dragonfly",
-                        "user_id": "",
-                        "text": "Tengo rodajeeeeeeee!!! Que huevada perderse este magno evento !!!!!! ❤️❤️",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "Privacy",
-                        "user_id": "",
-                        "text": "Meta",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    }
-                ],
-                "comments_count_actual": 9
-            },
-            {
-                "url": "https://www.instagram.com/p/DWeBnB1DW33/",
-                "shortcode": "DWeBnB1DW33",
-                "caption": "Lecciones de vida en un decálogo\n\n​Arón Bitrán nos comparte su visión sobre lo que significa ser parte de un cuarteto. \n\nSin embargo, su mensaje va mucho más allá de las cuerdas; son principios aplicables a todo lo que hacemos con pasión y compromiso en el día a día.",
-                "hashtags": [],
-                "likes": 1,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1774789312,
-                "date": "2026-03-29 08:01:52",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DRrc6GBjQle/",
-                "shortcode": "DRrc6GBjQle",
-                "caption": "La noche de anoche\nEntre fotos, música y baile\nGran encuentro gran",
-                "hashtags": [],
-                "likes": 30,
-                "comments": 2,
-                "views": "N/A",
-                "timestamp": 1764502100,
-                "date": "2025-11-30 06:28:20",
-                "media_type": "XDTMediaDict",
-                "comments_data": [
-                    {
-                        "username": "smed_bu",
-                        "user_id": "",
-                        "text": "smed_bu\n \n20w\nLa noche de anoche\nEntre fotos, música y baile\nGran encuentro gran",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "smed_bu",
-                        "user_id": "",
-                        "text": "La noche de anoche\nEntre fotos, música y baile\nGran encuentro gran",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "cb2_7",
-                        "user_id": "",
-                        "text": "😍🔥",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    },
-                    {
-                        "username": "Privacy",
-                        "user_id": "",
-                        "text": "Meta",
-                        "timestamp": 0,
-                        "likes": 0,
-                        "has_replies": false
-                    }
-                ],
-                "comments_count_actual": 4
-            },
-            {
-                "url": "https://www.instagram.com/p/DXXpkuJD9OU/",
-                "shortcode": "DXXpkuJD9OU",
-                "caption": "",
-                "hashtags": [],
-                "likes": 2,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776722563,
-                "date": "2026-04-20 17:02:43",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DXXA_XFjYFq/",
-                "shortcode": "DXXA_XFjYFq",
-                "caption": "",
-                "hashtags": [],
-                "likes": 1,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776701278,
-                "date": "2026-04-20 11:07:58",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DXWcRA7jQau/",
-                "shortcode": "DXWcRA7jQau",
-                "caption": "",
-                "hashtags": [],
-                "likes": 0,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776682037,
-                "date": "2026-04-20 05:47:17",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DXU-7twj4NI/",
-                "shortcode": "DXU-7twj4NI",
-                "caption": "Xq la producción también hace dulces\nTerapia de Domingo",
-                "hashtags": [],
-                "likes": 1,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776633112,
-                "date": "2026-04-19 16:11:52",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DXGIfuODBzi/",
-                "shortcode": "DXGIfuODBzi",
-                "caption": "Nietzsche decía que \"todo espíritu profundo necesita una máscara\"\n\nNo siempre estar  risueño es estar bien, ni estar muy serio , es estar mal, depende cuanto conozcas al otr@ para saberlo.",
-                "hashtags": [],
-                "likes": 2,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776134788,
-                "date": "2026-04-13 21:46:28",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DXCpyJPESxW/",
-                "shortcode": "DXCpyJPESxW",
-                "caption": "",
-                "hashtags": [],
-                "likes": 0,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776018032,
-                "date": "2026-04-12 13:20:32",
-                "media_type": "XDTMediaDict"
-            },
-            {
-                "url": "https://www.instagram.com/p/DXCpVkKkUxz/",
-                "shortcode": "DXCpVkKkUxz",
-                "caption": "",
-                "hashtags": [],
-                "likes": 1,
-                "comments": 0,
-                "views": "N/A",
-                "timestamp": 1776017798,
-                "date": "2026-04-12 13:16:38",
-                "media_type": "XDTMediaDict"
-            }
-        ]
     },
     "psychology_profiles": [
         {
